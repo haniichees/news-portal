@@ -19,3 +19,4 @@ export { default as useScrollTrigger } from '@material-ui/core/useScrollTrigger'
 export { default as TwitterIcon } from '@material-ui/icons/Twitter';
 export { default as GitHubIcon } from '@material-ui/icons/GitHub';
 export { default as InstagramIcon } from '@material-ui/icons/Instagram';
+export { default as FacebookIcon } from '@material-ui/icons/Facebook';

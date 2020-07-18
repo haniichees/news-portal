@@ -7,23 +7,31 @@ import { Card, CardContent, CardMedia, NewsSkeleton, Container } from './';
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '80vh',
+    padding: theme.spacing(2, 0, 4, 0),
   },
   media: {
     height: '40vh',
     backgroundRepeat: 'no-repeat',
     borderRadius: '5px',
-  },
-  card: {
-    padding: theme.spacing(0, 2, 0, 2),
+    margin: theme.spacing(0, 0, 2, 0),
   },
   title: {
-    padding: theme.spacing(2, 2),
-  },
-  mainText: {
-    padding: theme.spacing(2, 2),
-  },
-  date: {
-    padding: theme.spacing(0, 2),
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '2.7rem',
+      lineHeight: 1.167,
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: '2.3rem',
+      lineHeight: 1.167,
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.9rem',
+      lineHeight: 1.235,
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5rem',
+      lineHeight: 1.334,
+    },
   },
 }));
 
@@ -50,14 +58,15 @@ export default function News() {
       {data.length === 0 ? (
         <NewsSkeleton />
       ) : (
-        <Card className={classes.card}>
+        <Card>
           <CardContent>
             <Typography
+              className={classes.title}
               gutterBottom
               variant="h4"
               component="h1"
-              align="center"
-              className={classes.title}
+              align="left"
+              paragraph
             >
               {data.title}
             </Typography>
@@ -72,15 +81,16 @@ export default function News() {
               variant="body1"
               color="inherit"
               component="p"
-              className={classes.mainText}
+              paragraph
             >
               {data.mainText}
             </Typography>
             <Typography
+              gutterBottom
               variant="body2"
               color="textSecondary"
               component="p"
-              className={classes.date}
+              paragraph
             >
               {data.creationDateTime} | {data.authorName}
             </Typography>

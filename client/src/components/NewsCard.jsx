@@ -23,7 +23,7 @@ const News = ({ _id, title, description, image, date }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={11} md={5} lg={5} xl={5}>
+    <Grid item xs={12} md={6} lg={6} xl={6}>
       <Link href={`/news/id?id=` + `${_id}`} underline="none">
         <Card className={classes.card}>
           <CardActionArea>

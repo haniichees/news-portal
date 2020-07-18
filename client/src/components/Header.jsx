@@ -5,10 +5,11 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import { amber, grey } from '@material-ui/core/colors';
-import { SignUp } from './';
+import { SignUp, Container } from './';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
+    padding: theme.spacing(1, 0, 0, 0),
     color: grey[50],
     background: grey[900],
   },
@@ -26,25 +27,30 @@ const useStyles = makeStyles((theme) => ({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-    margin: theme.spacing(1, 0),
+    [theme.breakpoints.down('md')]: {
+      fontSize: '3rem',
+    },
     [theme.breakpoints.down('sm')]: {
-      fontSize: '2rem',
+      fontSize: '2.6rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.6rem',
     },
   },
   HomeBtn: {
-    color: grey[300],
-    fontSize: '18px',
+    fontSize: 16,
+    color: grey[50],
     '&:hover': {
-      color: grey[50],
+      color: grey[500],
       transition: 'all 0.2s ease-in',
     },
   },
   SignInBtn: {
+    fontSize: 16,
     border: '0px',
-    fontSize: '18px',
     color: amber[800],
     '&:hover': {
-      color: amber[700],
+      color: amber[900],
       transition: 'all 0.2s ease-in',
     },
   },
@@ -64,32 +70,37 @@ export default function Header() {
 
   return (
     <>
-      <Toolbar className={classes.toolbar} id="back-to-top-anchor">
-        <Link href="/" underline="none">
-          <Button className={classes.HomeBtn} size="small">
-            Home
+      <Container maxWidth="lg">
+        <Toolbar
+          className={classes.toolbar}
+          id="back-to-top-anchor"
+          disableGutters
+        >
+          <Link href="/" underline="none">
+            <Button className={classes.HomeBtn} size="medium">
+              Home
+            </Button>
+          </Link>
+          <Typography
+            variant="h3"
+            component="h2"
+            color="inherit"
+            align="center"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            News Portal
+          </Typography>
+          <Button
+            className={classes.SignInBtn}
+            onClick={handleClickOpen}
+            size="medium"
+          >
+            Sign in
           </Button>
-        </Link>
-        <Typography
-          variant="h3"
-          component="h2"
-          color="inherit"
-          align="center"
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          News Portal
-        </Typography>
-        <Button
-          className={classes.SignInBtn}
-          variant="outlined"
-          size="small"
-          onClick={handleClickOpen}
-        >
-          Sign in
-        </Button>
-        <SignUp open={open} onClose={handleClose} />
-      </Toolbar>{' '}
+          <SignUp open={open} onClose={handleClose} />
+        </Toolbar>{' '}
+      </Container>
     </>
   );
 }

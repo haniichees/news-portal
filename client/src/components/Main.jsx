@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from './';
+import { Grid, Container } from './';
 import NewsCard from './NewsCard';
 import useInfiniteScroll from './useInfinite';
 import Skeletons from './Skeletons';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0, 1, 2, 1),
+  },
   grid: {
     minHeight: '80vh',
     width: '100%',
@@ -46,20 +49,28 @@ export default function Main() {
   }, []);
 
   return (
-    <Grid container className={classes.grid} spacing={4} justify="center">
-      {data.length === 0 ? (
-        <Skeletons />
-      ) : (
-        data.map((item) => (
-          <NewsCard
-            _id={item.id}
-            title={item.title}
-            description={item.description}
-            image={item.newsImage}
-            date={item.creationDateTime}
-          />
-        ))
-      )}
-    </Grid>
+    <Container className={classes.root} maxWidth="lg" disableGutters>
+      <Grid
+        container
+        className={classes.grid}
+        spacing={4}
+        justify="center"
+        alignItems="baseline"
+      >
+        {data.length === 0 ? (
+          <Skeletons />
+        ) : (
+          data.map((item) => (
+            <NewsCard
+              _id={item.id}
+              title={item.title}
+              description={item.description}
+              image={item.newsImage}
+              date={item.creationDateTime}
+            />
+          ))
+        )}
+      </Grid>
+    </Container>
   );
 }
