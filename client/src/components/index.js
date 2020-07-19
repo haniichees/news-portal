@@ -4,6 +4,8 @@ export { default as News } from './News.jsx';
 export { default as Copyrights } from './Copyrights.jsx';
 export { default as Developers } from './Developers.jsx';
 export { default as NewsSkeleton } from './NewsSkeleton.jsx';
+export { default as remember } from './rememberTheme.jsx';
+export { default as isFirst } from './isFirst.jsx';
 export { default as Skeleton } from '@material-ui/lab/Skeleton';
 export { default as SignUp } from './SignUp.jsx';
 export { default as IconButton } from '@material-ui/core/IconButton';
