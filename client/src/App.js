@@ -14,6 +14,8 @@ import {
   useScrollTrigger,
   Zoom,
   Fab,
+  remember,
+  isFirst,
 } from './components';
 import Footer from './components/Footer';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -68,14 +70,21 @@ ScrollTop.propTypes = {
 };
 
 export default function App() {
+  isFirst();
+
   const classes = useStyles();
-  const [themeMode, setThemeMode] = useState('dark');
+  const [themeMode, setThemeMode] = useState(
+    localStorage.getItem('rememberMode')
+  );
 
   const handleDarkMode = () => {
     setThemeMode('dark');
+    remember('dark');
   };
+
   const handleLightMode = () => {
     setThemeMode('light');
+    remember('light');
   };
 
   const darkTheme = createMuiTheme({
