@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { Grid, Card, CardActionArea, CardContent, CardMedia } from './';
+import { Grid, Card, CardActionArea, CardContent, CardMedia, Link } from './';
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    color: 'black',
+    color: 'textPrimary',
     display: 'flex',
+    backgroundColor: 'secondary',
   },
   media: {
     backgroundRepeat: 'no-repeat',
@@ -52,7 +52,7 @@ const News = ({ _id, title, description, image, date }) => {
                 {description}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {date}
+                {date.slice(0, 10) + ` ` + date.slice(11, 16)}
               </Typography>
             </CardContent>
           </CardActionArea>

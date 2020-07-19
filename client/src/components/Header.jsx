@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import { amber, grey } from '@material-ui/core/colors';
-import { SignUp, Container } from './';
+import { amber } from '@material-ui/core/colors';
+import { SignUp, Container, Link, Toolbar } from './';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     padding: theme.spacing(1, 0, 0, 0),
-    color: grey[50],
-    background: grey[900],
+    color: 'theme.palette.text.primary',
   },
   toolbarTitle: {
     flex: 1,
@@ -34,25 +31,19 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2.6rem',
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '1.6rem',
+      fontSize: '1.8rem',
     },
   },
   HomeBtn: {
     fontSize: 16,
-    color: grey[50],
-    '&:hover': {
-      color: grey[500],
-      transition: 'all 0.2s ease-in',
-    },
+    border: 0,
+    color: 'theme.palette.text.primary',
+    borderColor: 'theme.palette.text.primary',
   },
   SignInBtn: {
     fontSize: 16,
-    border: '0px',
+    border: 0,
     color: amber[800],
-    '&:hover': {
-      color: amber[900],
-      transition: 'all 0.2s ease-in',
-    },
   },
 }));
 
@@ -91,6 +82,7 @@ export default function Header() {
           >
             News Portal
           </Typography>
+
           <Button
             className={classes.SignInBtn}
             onClick={handleClickOpen}

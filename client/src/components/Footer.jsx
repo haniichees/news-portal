@@ -1,79 +1,128 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Copyrights, Container } from './';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import { TwitterIcon, GitHubIcon, InstagramIcon, FacebookIcon } from './';
-import grey from '@material-ui/core/colors/grey';
+import {
+  Copyrights,
+  Developers,
+  Container,
+  IconButton,
+  TwitterIcon,
+  GitHubIcon,
+  InstagramIcon,
+  FacebookIcon,
+  Grid,
+} from './';
+import { Brightness2, Brightness7 } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    background: grey[800],
-    color: grey[500],
+  footer: {
+    background: theme.palette.background.paper,
     position: 'relative',
-    padding: theme.spacing(6, 0),
-  },
-  socialIcons: {
-    color: grey[50],
-    margin: theme.spacing(0, 1, 1, 1),
-    '&:hover': {
-      color: grey[500],
-      transition: 'all 0.2s ease-in',
-    },
+    padding: theme.spacing(5, 0),
   },
 }));
-
-export default function Footer() {
+const Footer = ({ themeMode, lightMode, darkMode }) => {
   const classes = useStyles();
 
   return (
-    <footer className={classes.root}>
+    <footer className={classes.footer}>
       <Container maxWidth="lg">
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="inherit"
-          component="p"
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="baseline"
         >
-          <Link
-            color="inherit"
-            href="https://github.com/haniichees/news-portal"
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-          >
-            <GitHubIcon className={classes.socialIcons} />
-          </Link>
-          <Link
-            color="inherit"
-            href="https://twitter.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-          >
-            <TwitterIcon className={classes.socialIcons} />
-          </Link>
-          <Link
-            color="inherit"
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-          >
-            <InstagramIcon className={classes.socialIcons} />
-          </Link>
-          <Link
-            color="inherit"
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-          >
-            <FacebookIcon className={classes.socialIcons} />
-          </Link>
-        </Typography>
-        <Copyrights />
+          <Grid item xs={6}>
+            <Typography color="inherit" component="p" align="center" paragraph>
+              <Link
+                color="inherit"
+                href="https://github.com/haniichees/news-portal"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+              >
+                <IconButton color="inherit" size="small">
+                  <GitHubIcon className={classes.socialIcons} />
+                </IconButton>
+              </Link>
+              <Link
+                color="inherit"
+                href="https://twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+              >
+                <IconButton color="inherit" size="small">
+                  <TwitterIcon className={classes.socialIcons} />
+                </IconButton>
+              </Link>
+              <Link
+                color="inherit"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+              >
+                <IconButton color="inherit" size="small">
+                  <InstagramIcon className={classes.socialIcons} />
+                </IconButton>
+              </Link>
+              <Link
+                color="inherit"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+              >
+                <IconButton color="inherit" size="small">
+                  <FacebookIcon className={classes.socialIcons} />
+                </IconButton>
+              </Link>
+            </Typography>
+            <Copyrights />
+          </Grid>
+          <Grid item xs={6}>
+            {themeMode === 'light' ? (
+              <Fragment>
+                <Typography align="center" paragraph>
+                  <IconButton color="inherit" size="small" onClick={darkMode}>
+                    <Brightness2></Brightness2>
+                  </IconButton>
+                </Typography>
+                <Typography
+                  style={{ textTransform: 'uppercase' }}
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  align="center"
+                >
+                  <Developers />
+                </Typography>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Typography align="center" paragraph>
+                  <IconButton color="inherit" size="small" onClick={lightMode}>
+                    <Brightness7></Brightness7>
+                  </IconButton>
+                </Typography>
+                <Typography
+                  style={{ textTransform: 'uppercase' }}
+                  variant="body2"
+                  component="p"
+                  align="center"
+                  color="textSecondary"
+                >
+                  <Developers />
+                </Typography>
+              </Fragment>
+            )}
+          </Grid>
+        </Grid>
       </Container>
     </footer>
   );
-}
+};
+export default Footer;

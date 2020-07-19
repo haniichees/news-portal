@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {
@@ -6,13 +6,18 @@ import {
   ThemeProvider,
   makeStyles,
 } from '@material-ui/core/styles';
-import { CssBaseline } from './components';
-import { Header, Main, Footer, News } from './components';
-import { useScrollTrigger } from './components';
-import { Zoom } from './components';
-import { Fab } from './components';
+import {
+  Header,
+  Main,
+  News,
+  CssBaseline,
+  useScrollTrigger,
+  Zoom,
+  Fab,
+} from './components';
+import Footer from './components/Footer';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { grey } from '@material-ui/core/colors';
+import { grey, amber } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   newsContainer: {
@@ -24,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
     zIndex: '99999',
-    opacity: 0.9,
+    opacity: 0.8,
   },
 }));
 
@@ -64,23 +69,40 @@ ScrollTop.propTypes = {
 
 export default function App() {
   const classes = useStyles();
+  const [themeMode, setThemeMode] = useState('dark');
 
-  const theme = createMuiTheme({
-    overrides: {
-      MuiCssBaseline: {
-        '@global': {
-          body: {
-            WebkitFontSmoothing: 'auto',
-            backgroundColor: grey[900],
-            color: grey[300],
-          },
-        },
+  const handleDarkMode = () => {
+    setThemeMode('dark');
+  };
+  const handleLightMode = () => {
+    setThemeMode('light');
+  };
+
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: 'dark',
+      secondary: {
+        main: amber[800],
+      },
+      background: {
+        default: grey[900],
+      },
+    },
+  });
+  const lightTheme = createMuiTheme({
+    palette: {
+      type: 'light',
+      secondary: {
+        main: amber[800],
+      },
+      background: {
+        default: grey[50],
       },
     },
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
       <CssBaseline />
       <BrowserRouter>
         <Header />
@@ -88,10 +110,14 @@ export default function App() {
           <Route exact path="/" component={Main} />
           <Route path="/news/id" component={News} />
         </Switch>
-        <Footer />
+        <Footer
+          themeMode={themeMode}
+          darkMode={handleDarkMode}
+          lightMode={handleLightMode}
+        />
       </BrowserRouter>
       <ScrollTop className={classes.scrollToTopButton}>
-        <Fab size="small" aria-label="scroll back to top">
+        <Fab size="small" aria-label="scroll back to top" color="secondary">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

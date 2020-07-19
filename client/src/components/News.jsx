@@ -90,9 +90,12 @@ export default function News() {
               variant="body2"
               color="textSecondary"
               component="p"
-              paragraph
             >
-              {data.creationDateTime} | {data.authorName}
+              {data.creationDateTime.slice(0, 10) +
+                ` ` +
+                data.creationDateTime.slice(11, 19) +
+                ` | ` +
+                data.authorName}
             </Typography>
           </CardContent>
         </Card>

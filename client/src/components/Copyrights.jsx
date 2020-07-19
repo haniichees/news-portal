@@ -1,16 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { Typography, Link } from './';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: 'lightgray',
-  },
-  links: {
-    color: 'inherit',
-    target: '_blank',
-    rel: 'noopener noreferrer',
+    color: 'primary',
   },
 }));
 
@@ -30,7 +24,7 @@ export default function Copyrights() {
         href="http://bmstu-kaluga.ru/"
         target="_blank"
         rel="noopener noreferrer"
-        className={classes.links}
+        color="inherit"
       >
         BMSTU KALUGA
       </Link>
@@ -39,7 +33,7 @@ export default function Copyrights() {
         href="https://vk.com/eic5_kb"
         target="_blank"
         rel="noopener noreferrer"
-        className={classes.links}
+        color="inherit"
       >
         IPS
       </Link>
